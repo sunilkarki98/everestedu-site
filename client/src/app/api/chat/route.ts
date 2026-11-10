@@ -99,7 +99,7 @@ CRITICAL RULES:
     };
 
     // Determine model dynamically
-    const aiModelName = process.env.AI_MODEL || 'gemini-1.5-flash';
+    const aiModelName = process.env.AI_MODEL || 'gemini-flash-lite-latest';
     let selectedModel;
     
     if (aiModelName.startsWith('gpt')) {
@@ -121,11 +121,7 @@ CRITICAL RULES:
       temperature: 0.4,
     });
 
-    const textStream = toTextStream({
-      stream: result.stream,
-    });
-
-    return createTextStreamResponse({ stream: textStream });
+    return createTextStreamResponse({ stream: toTextStream({ stream: result.stream }) });
 
   } catch (error) {
     console.error('Chat error:', error);

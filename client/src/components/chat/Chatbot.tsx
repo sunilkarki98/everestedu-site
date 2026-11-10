@@ -96,8 +96,22 @@ export function Chatbot() {
           return updated;
         });
       }
+
+      // If the assistant message is still empty after streaming, remove it
+      if (!assistantMessage.content.trim()) {
+        setMessages(prev => prev.filter(m => m.id !== assistantMessage.id));
+        setError(true);
+      }
     } catch (err) {
       console.error("Chat error:", err);
+      // Remove any empty assistant bubble that was added
+      setMessages(prev => {
+        const last = prev[prev.length - 1];
+        if (last && last.role === "assistant" && !last.content.trim()) {
+          return prev.slice(0, -1);
+        }
+        return prev;
+      });
       setError(true);
     } finally {
       setIsLoading(false);
