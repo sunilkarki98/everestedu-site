@@ -107,7 +107,7 @@ export async function POST(req: NextRequest) {
             new Date().toISOString(),
             escapeCell(body.name),
             escapeCell(body.email),
-            escapeCell(body.phone),
+            body.phone ? `'${String(body.phone).trim()}` : '',
             escapeCell(body.occupation),
             escapeCell(body.dob),
             escapeCell(body.visa_subclass || 'N/A'),
