@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eevsgroup/everest-edu-site.git"
+    "url": "git+https://github.com/sunilkarki98/everestedu-site.git"
   },
   "keywords": [],
   "author": "Everest Education & Visa Services",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/eevsgroup/everest-edu-site/issues"
+    "url": "https://github.com/sunilkarki98/everestedu-site/issues"
   },
-  "homepage": "https://github.com/eevsgroup/everest-edu-site#readme",
+  "homepage": "https://github.com/sunilkarki98/everestedu-site#readme",
   "private": true
 }
