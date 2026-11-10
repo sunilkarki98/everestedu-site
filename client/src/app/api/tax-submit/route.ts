@@ -15,6 +15,31 @@ const escapeCell = (val: unknown): string => {
   return /^[-+=@]/.test(trimmed) ? `'${trimmed}` : trimmed;
 };
 
+// Format clean human-readable date in Australia/Sydney timezone (e.g. "10/11/2026, 04:15:30 PM")
+const formatSubmissionDate = (date: Date = new Date()): string => {
+  return new Intl.DateTimeFormat('en-AU', {
+    timeZone: 'Australia/Sydney',
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: true,
+  }).format(date);
+};
+
+// Format phone number ensuring country code and preventing spreadsheet formula parsing
+const formatPhoneForSheet = (phone: unknown, countryCode = '+61'): string => {
+  if (typeof phone !== 'string' || !phone.trim()) return '';
+  let clean = phone.trim();
+  if (!clean.startsWith('+')) {
+    if (clean.startsWith('0')) clean = clean.slice(1);
+    clean = `${countryCode} ${clean}`;
+  }
+  return `'${clean}`;
+};
+
 export async function POST(req: NextRequest) {
   try {
     const ip = getClientIp(req);
@@ -104,10 +129,10 @@ export async function POST(req: NextRequest) {
         valueInputOption: 'USER_ENTERED',
         requestBody: { 
           values: [[
-            new Date().toISOString(),
+            `'${formatSubmissionDate()}`,
             escapeCell(body.name),
             escapeCell(body.email),
-            body.phone ? `'${String(body.phone).trim()}` : '',
+            formatPhoneForSheet(body.phone, body.country_code),
             escapeCell(body.occupation),
             escapeCell(body.dob),
             escapeCell(body.visa_subclass || 'N/A'),

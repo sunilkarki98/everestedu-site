@@ -202,6 +202,19 @@ export default function TaxForm() {
     });
     data.medicareExempt = medicareExempt;
     data.contactMethod = contactMethod;
+
+    // Ensure phone is formatted with country code
+    const rawPhone = (data.phone || '').trim();
+    const countryCode = (data.country_code || '+61').trim();
+    if (rawPhone) {
+      if (rawPhone.startsWith('+')) {
+        data.phone = rawPhone;
+      } else {
+        const clean = rawPhone.startsWith('0') ? rawPhone.slice(1) : rawPhone;
+        data.phone = `${countryCode} ${clean}`;
+      }
+    }
+
     return data;
   };
 
@@ -387,7 +400,31 @@ export default function TaxForm() {
           <div className="p-5 sm:p-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div className="space-y-2 sm:col-span-2"><label className="text-sm font-semibold text-slate-700">Address <span className="text-red-500">*</span></label><input type="text" name="address" required className="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" /></div>
-              <div className="space-y-2"><label className="text-sm font-semibold text-slate-700">Phone <span className="text-red-500">*</span></label><input type="tel" name="phone" required className="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" /></div>
+              <div className="space-y-2">
+                <label className="text-sm font-semibold text-slate-700">Phone <span className="text-red-500">*</span></label>
+                <div className="flex gap-2">
+                  <select
+                    name="country_code"
+                    defaultValue="+61"
+                    aria-label="Country Code"
+                    className="flex h-10 w-28 shrink-0 rounded-md border border-input bg-slate-50 px-2 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent font-medium cursor-pointer"
+                  >
+                    <option value="+61">🇦🇺 +61</option>
+                    <option value="+977">🇳🇵 +977</option>
+                    <option value="+91">🇮🇳 +91</option>
+                    <option value="+64">🇳🇿 +64</option>
+                    <option value="+1">🇺🇸 +1</option>
+                    <option value="+44">🇬🇧 +44</option>
+                  </select>
+                  <input
+                    type="tel"
+                    name="phone"
+                    required
+                    placeholder="0412 345 678"
+                    className="flex h-10 flex-1 rounded-md border border-input bg-transparent px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                  />
+                </div>
+              </div>
               <div className="space-y-2"><label className="text-sm font-semibold text-slate-700">Email <span className="text-red-500">*</span></label><input type="email" name="email" required className="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" /></div>
               
               <div className="space-y-2 sm:col-span-2 mt-2 p-4 bg-slate-50 border border-slate-200 rounded-lg">
