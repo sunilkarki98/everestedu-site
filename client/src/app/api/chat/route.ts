@@ -1,5 +1,5 @@
 import { openai } from '@ai-sdk/openai';
-import { google } from '@ai-sdk/google';
+import { google, createGoogleGenerativeAI } from '@ai-sdk/google';
 import { streamText } from 'ai';
 import { aboutFaqs, contactFaqs, homeFaqs, coursesFaqs, taxReturnFaqs } from '@/data/faqs';
 import { detailedCourses } from '@/data/courses';
@@ -105,7 +105,13 @@ CRITICAL RULES:
     if (aiModelName.startsWith('gpt')) {
       selectedModel = openai(aiModelName);
     } else {
-      selectedModel = google(aiModelName);
+      const geminiApiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_GENERATIVE_AI_API_KEY;
+      if (geminiApiKey) {
+        const customGoogle = createGoogleGenerativeAI({ apiKey: geminiApiKey });
+        selectedModel = customGoogle(aiModelName);
+      } else {
+        selectedModel = google(aiModelName);
+      }
     }
 
     const result = streamText({

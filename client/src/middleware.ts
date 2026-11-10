@@ -1,22 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 
 /**
- * Middleware to enforce canonical domain.
- *
- * Redirects www → non-www with a 308 Permanent Redirect.
- * HTTP → HTTPS is already handled at the Vercel edge layer
- * via the strict-transport-security header.
+ * Middleware: Pass through requests cleanly.
+ * Canonical domain redirects (www vs non-www) and HTTPS enforcement
+ * are handled at the Vercel Edge layer under Project Settings > Domains.
  */
 export function middleware(request: NextRequest) {
-  const hostname = request.headers.get("host") || "";
-
-  // Redirect www.eevsgroup.com → eevsgroup.com
-  if (hostname.startsWith("www.")) {
-    const newUrl = new URL(request.url);
-    newUrl.host = hostname.replace(/^www\./, "");
-    return NextResponse.redirect(newUrl, 308);
-  }
-
   return NextResponse.next();
 }
 
