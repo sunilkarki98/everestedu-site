@@ -1,6 +1,6 @@
 import { openai } from '@ai-sdk/openai';
 import { google, createGoogleGenerativeAI } from '@ai-sdk/google';
-import { streamText } from 'ai';
+import { streamText, createTextStreamResponse, toTextStream } from 'ai';
 import { aboutFaqs, contactFaqs, homeFaqs, coursesFaqs, taxReturnFaqs } from '@/data/faqs';
 import { detailedCourses } from '@/data/courses';
 import { migrationServices, studyServices } from '@/data/services';
@@ -121,7 +121,11 @@ CRITICAL RULES:
       temperature: 0.4,
     });
 
-    return result.toTextStreamResponse();
+    const textStream = toTextStream({
+      stream: result.stream,
+    });
+
+    return createTextStreamResponse({ stream: textStream });
 
   } catch (error) {
     console.error('Chat error:', error);
