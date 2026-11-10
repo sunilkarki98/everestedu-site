@@ -1,0 +1,23 @@
+{
+  "name": "everest-edu-site",
+  "version": "1.0.0",
+  "description": "Trusted education & visa services in Australia. Family-owned, student-first.",
+  "scripts": {
+    "dev": "npm run dev --prefix client",
+    "build": "npm run build --prefix client",
+    "start": "npm run start --prefix client",
+    "lint": "npm run lint --prefix client"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eevsgroup/everest-edu-site.git"
+  },
+  "keywords": [],
+  "author": "Everest Education & Visa Services",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eevsgroup/everest-edu-site/issues"
+  },
+  "homepage": "https://github.com/eevsgroup/everest-edu-site#readme",
+  "private": true
+}

@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+pnpm-lock.yaml
+
+# Build & Cache
+.next/
+dist/
+build/
+.turbo/
+*.tsbuildinfo
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDEs & Editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Google Cloud Service Account Keys (NEVER commit these)
+*service-account*.json
+*-backend-*.json
+*credentials*.json
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Trunk (Code Quality)
+.trunk/

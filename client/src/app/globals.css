@@ -1,0 +1,375 @@
+/* 
+🌸 BLESSING FOR THIS WEBSITE 🌸
+By the grace of Ahilya (born on Ram Navami) and Amulya (priceless),
+this website carries the energy of Number 2 (trust), Number 4 (stability), and Number 6 (care).
+May every visitor feel peace. May every student find their path.
+Colors: White (#FFFFFF), Navy (#1A2A5E), Light Blue (#89CFF0), Silver (#C0C0C0).
+For Ahilya & Amulya — and for all who seek a better future.
+*/
+
+/* Import Plus Jakarta Sans from Google Fonts */
+
+@import "tailwindcss";
+
+/* -------------------------------------------------------------------------
+   Design System Tokens
+------------------------------------------------------------------------- */
+@layer base {
+  :root {
+    /* Centralized Section Spacing Variables */
+    --section-spacing-mobile-sm: 2.5rem;
+    --section-spacing-desktop-sm: 3.5rem;
+    
+    --section-spacing-mobile-md: 4rem;
+    --section-spacing-desktop-md: 6rem;
+    
+    --section-spacing-mobile-lg: 5rem;
+    --section-spacing-desktop-lg: 7rem;
+
+    /* Base Colors */
+    --background: 0 0% 100%;
+    /* #FFFFFF */
+    --foreground: 228 14% 20%;
+    /* #333333 */
+
+    /* Primary (Navy Blue) - Trust, stability, professionalism */
+    --primary: 226 57% 23%;
+    /* #1A2A5E */
+    --primary-foreground: 0 0% 100%;
+    /* #FFFFFF */
+
+    /* Secondary (Light Blue) - Growth, highlights */
+    --secondary: 199 73% 74%;
+    /* #89CFF0 */
+    --secondary-foreground: 226 57% 23%;
+    /* #1A2A5E */
+
+    /* Accent (Gold) - Premium, interactive */
+    --accent: 46 65% 52%;
+    /* #D4AF37 */
+    --accent-foreground: 226 57% 23%;
+    /* #1A2A5E */
+
+    --accent-text: 43 74% 27%;
+    /* Darker gold for text contrast */
+
+    --muted: 0 0% 95%;
+    /* Light gray for subtle backgrounds */
+    --muted-foreground: 220 15% 40%;
+    /* Darker slate-gray for sharp text readability */
+
+    /* Card — standalone raised surfaces */
+    --card: 0 0% 100%;
+    /* White cards */
+    --card-foreground: 228 14% 20%;
+    /* Same as --foreground */
+
+    /* Surface — section backgrounds, subtle fills (replaces raw slate-*) */
+    --surface: 210 40% 98%;
+    /* ~slate-50 — light blue-tinted gray */
+    --surface-foreground: 215 16% 35%;
+    /* ~slate-600 — readable text on surface */
+    --surface-border: 214 32% 91%;
+    /* ~slate-200 — subtle border on surface */
+    --surface-hover: 210 40% 96%;
+    /* ~slate-100 — interactive hover state */
+    --surface-muted: 215 20% 65%;
+    /* ~slate-400 — muted elements on surface */
+
+    /* Borders & Inputs */
+    --border: 0 0% 75%;
+    /* #C0C0C0 - Silver */
+    --input: 0 0% 75%;
+    /* #C0C0C0 */
+    --ring: 199 73% 74%;
+    /* #89CFF0 - Light Blue focus rings */
+
+    /* Status Colors */
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 226 57% 23%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Structural variables */
+    --radius: 0.75rem;
+    /* 12px default radius for modern look */
+  }
+
+  /* Dark mode variables - Structural support ready for future expansion */
+  .dark {
+    --background: 226 57% 10%;
+    /* Very dark Navy */
+    --foreground: 0 0% 95%;
+    /* Off-white */
+
+    --primary: 199 73% 74%;
+    /* Light Blue for dark mode primary */
+    --primary-foreground: 256 51% 10%;
+
+    --secondary: 226 57% 23%;
+    /* Navy Blue */
+    --secondary-foreground: 0 0% 95%;
+
+    --accent: 46 65% 52%;
+    /* Gold */
+    --accent-foreground: 256 51% 10%;
+
+    --muted: 226 30% 15%;
+    --muted-foreground: 226 20% 65%;
+
+    --card: 226 40% 13%;
+    --card-foreground: 0 0% 95%;
+
+    --surface: 226 35% 12%;
+    --surface-foreground: 226 20% 75%;
+    --surface-border: 226 30% 20%;
+    --surface-hover: 226 30% 18%;
+    --surface-muted: 226 20% 50%;
+
+    --border: 226 30% 25%;
+    --input: 226 30% 25%;
+    --ring: 199 73% 74%;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Tailwind CSS v4 @theme configuration
+------------------------------------------------------------------------- */
+@theme {
+  /* Font Family */
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+
+  /* Color Mappings */
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-accent-text: hsl(var(--accent-text));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --color-surface: hsl(var(--surface));
+  --color-surface-foreground: hsl(var(--surface-foreground));
+  --color-surface-border: hsl(var(--surface-border));
+  --color-surface-hover: hsl(var(--surface-hover));
+  --color-surface-muted: hsl(var(--surface-muted));
+
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --color-success: hsl(var(--success));
+  --color-success-foreground: hsl(var(--success-foreground));
+  --color-warning: hsl(var(--warning));
+  --color-warning-foreground: hsl(var(--warning-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  /* Custom Extracted Colors */
+  --color-navy: #1A2A5E;
+  --color-navy-dark: #0f1d4a;
+  --color-gold-light: #E8D48B;
+  --color-gold: #D4AF37;
+  --color-gold-dark: #9B8A2F;
+  --color-whatsapp: #25D366;
+
+  /* Custom Spacing specific to sections */
+  --spacing-section: 5rem;
+  --spacing-section-lg: 8rem;
+
+  /* Container overrides */
+  --container-max-w: 90rem;
+  /* 1440px */
+
+  /* Radius Mapping */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+/* -------------------------------------------------------------------------
+   Global Base Styles
+------------------------------------------------------------------------- */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+  }
+
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    margin: 0;
+    min-width: 320px;
+    overflow-x: hidden;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Typography Design System (Semantic Scale)
+------------------------------------------------------------------------- */
+@utility text-ui-hero {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+@utility text-ui-section-title {
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  line-height: 1.25;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+@utility text-ui-card-title {
+  font-size: clamp(1.125rem, 1.5vw, 1.25rem);
+  line-height: 1.3;
+  font-weight: 700;
+}
+
+@utility text-ui-lead {
+  font-size: clamp(1.125rem, 2vw, 1.25rem);
+  line-height: 1.6;
+}
+
+@utility text-ui-body {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+@utility text-ui-small {
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+/* -------------------------------------------------------------------------
+   Section Spacing Utilities (Standardized vertical rhythm)
+------------------------------------------------------------------------- */
+@utility section-py-sm {
+  padding-top: var(--section-spacing-mobile-sm);
+  padding-bottom: var(--section-spacing-mobile-sm);
+}
+
+@utility section-py-sm-lg {
+  @media (min-width: 1024px) {
+    padding-top: var(--section-spacing-desktop-sm);
+    padding-bottom: var(--section-spacing-desktop-sm);
+  }
+}
+
+@utility section-py-md {
+  padding-top: var(--section-spacing-mobile-md);
+  padding-bottom: var(--section-spacing-mobile-md);
+}
+
+@utility section-py-md-lg {
+  @media (min-width: 1024px) {
+    padding-top: var(--section-spacing-desktop-md);
+    padding-bottom: var(--section-spacing-desktop-md);
+  }
+}
+
+@utility section-py-lg {
+  padding-top: var(--section-spacing-mobile-lg);
+  padding-bottom: var(--section-spacing-mobile-lg);
+}
+
+@utility section-py-lg-lg {
+  @media (min-width: 1024px) {
+    padding-top: var(--section-spacing-desktop-lg);
+    padding-bottom: var(--section-spacing-desktop-lg);
+  }
+}
+
+/* ─── Premium Button Animation ─── */
+@keyframes moving-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-moving-gradient {
+  background-size: 200% auto;
+  animation: moving-gradient 3s linear infinite;
+}
+
+/* ─── Scrollbar ─── */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ─── Leaflet Map (preserved) ─── */
+.leaflet-container {
+  height: 100% !important;
+  width: 100% !important;
+  z-index: 0 !important;
+  background: transparent !important;
+}
+
+.leaflet-pane,
+.leaflet-map-pane,
+.leaflet-tile,
+.leaflet-tile-container,
+.leaflet-overlay-pane,
+.leaflet-marker-pane {
+  background: transparent !important;
+}
+
+.leaflet-tile {
+  filter: none !important;
+  opacity: 1 !important;
+}
+
+.everest-div-icon {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.everest-div-icon img {
+  display: block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
